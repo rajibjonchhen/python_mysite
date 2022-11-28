@@ -30,50 +30,34 @@ def register(request):
         username = request.POST['username']
         password = request.POST['password']
         repassword = request.POST['repassword']
-        
-        if User.objects.filter(username=username).exists():
+
+        if len(username) < 5 or len(password) < 5 or len(repassword) < 5:
+            info(request, ' username and password must be more than 4 chars')
+            return redirect('register')
+
+        elif User.objects.filter(username=username).exists():
             info(request, ' username already used ')
             return redirect('register')
         elif password == repassword:
-            info(request, "Password and repasword must be same")
-            return redirect('register')
-        else:
             User.objects.create_user(
                 username=username, password=password).save()
             return redirect('login')
+        else:
+            info(request, "Password and repasword must be same")
+            return redirect('register')
     else:
         return render(request, 'register.html')
 
-# def register(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         repassword = request.POST['repassword']
-#         if password == repassword:
-#             if User.objects.filter(username=username).exists():
-#                 info(request, ' username already used ')
-#                 return redirect('register')
-#             else:
-#                 User.objects.create_user(
-#                     username=username, password=password).save()
-#                 return redirect('login')
-#         else:
-#             info(request, "Password and repasword must be same")
-#             return redirect('register')
-#     else:
-#         return render(request, 'register.html')
 
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        
+
         if User.objects.filter(username=username).exists():
             return redirect('home')
         else:
-            info(request, "User not wrong password or username")
-            return redirect('register')
+            info(request, "User not exist wrong password or username")
+            return redirect('login')
     else:
-        return render(request, 'register.html')
-
-
+        return render(request, 'login.html')

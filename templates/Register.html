@@ -4,10 +4,10 @@
 </script> -->
 <h1>My Django site</h1>
 <div >
-    {% for message in  messages %}
-    <span class="error-msg">{{message}}</span>
-    {% endfor %}
     <fieldset>
+        {% for message in  messages %}
+        <span class="error-msg">{{message}}</span>
+        {% endfor %}
         <legend>User Registration form::</legend>
         <form method="POST" action="register">
             {% csrf_token %}

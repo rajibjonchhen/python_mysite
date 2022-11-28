@@ -22,7 +22,7 @@ input[type="submit"]{
     margin: auto;
 }
 .error-msg{
-    color:black;
+    color:white;
     background-color: red;
     padding:5px;
     width:100%
