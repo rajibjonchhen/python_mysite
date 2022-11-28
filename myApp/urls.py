@@ -5,7 +5,7 @@ from . import myroute
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.home, name='home'),
     path('myroute', myroute.myroute, name='myroute'),
     path('another', views.myAnotherRoute, name='another'),
     path('home', views.home, name='home'),

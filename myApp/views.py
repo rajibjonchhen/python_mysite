@@ -11,14 +11,9 @@ def index(request):
         "Hello, world. You're at the my app index page.: -)"
     )
 
-
 def home(request):
     features = Feature.objects.all()
     return render(request, 'home.html', {'features': features})
-
-
-def login(request):
-    return render(request, 'login.html')
 
 
 def myAnotherRoute(request):
