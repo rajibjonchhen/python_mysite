@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}"/>
+<!-- <script src="{% static 'script.js' %}">
+</script> -->
+<h1>My Django site</h1>
+<div >
+    {% for message in  messages %}
+    <span class="error-msg">{{message}}</span>
+    {% endfor %}
+    <fieldset>
+        <legend>User Registration form::</legend>
+        <form method="POST" action="register">
+            {% csrf_token %}
+            <!-- Legend tag using -->
+            <label>Username:
+                <input type="text" name="username"/>
+            </label>
+            <br><br>
+            <label>Password:
+                <input type="password" name="password" autocomplete="password"/>
+            </label>
+            <br><br>
+            <label>Repassword:
+                <input type="password" name="repassword" autocomplete="password"/>
+            </label>
+            <br><br>
+            <button type="submit" name="submit">submit</button>
+        </form>
+    </fieldset>
+</div>
+    

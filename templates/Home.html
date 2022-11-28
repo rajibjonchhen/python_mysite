@@ -1,3 +1,17 @@
-<h1>
-    Hello there from the template home
-</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}"/>
+<script src="{% static 'script.js' %}">
+</script>
+{% for feature in features %}
+<div class="my-card">
+    <h1 id="my_world">
+        {{feature.id}}
+        {{feature.title}}
+        
+    </h1>
+    <p>{{feature.description}}</p>
+</div>
+<button id="my-btn">
+    click me
+</button>
+    {% endfor %}
