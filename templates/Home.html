@@ -2,6 +2,15 @@
 <link rel="stylesheet" href="{% static 'style.css' %}"/>
 <script src="{% static 'script.js' %}">
 </script>
+<form action="login">
+    <button type="submit" class="card-btn">login</button>
+</form>
+<div>
+    {% if user.is_authenticated %}
+    <h3>Wel come, {{user.username}}</h3>
+    {% endif %}
+    <h1>All the features</h1>
+</div>
 <div class="card-container">
     {% for feature in features %}
     <div class="my-card">

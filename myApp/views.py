@@ -11,6 +11,7 @@ def index(request):
         "Hello, world. You're at the my app index page.: -)"
     )
 
+
 def home(request):
     features = Feature.objects.all()
     return render(request, 'home.html', {'features': features})
@@ -49,10 +50,16 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        if User.objects.filter(username=username).exists():
-            return redirect('home')
-        else:
-            info(request, "User not exist wrong password or username")
+        user = auth.authenticate(username=username, password=password)
+
+        if len(username) < 5 or len(password) < 5:
+            info(request, ' username and password must be more than 4 chars')
             return redirect('login')
+        elif user is not None:
+            auth.login(request, user)
+            return redirect("home")
+        else:
+            info(request, "Invalid credentials")
+            return redirect("login")
     else:
         return render(request, 'login.html')
