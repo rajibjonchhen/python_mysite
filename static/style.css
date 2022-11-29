@@ -45,6 +45,23 @@ input[type="submit"]{
     color:darkblue;
 }
 
+.log-btn{
+    color:blue;
+    background-color: lightblue;
+    padding:10px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin: 10px auto;
+    border-bottom: 10px;
+    border: 1px solid; 
+    border-color: gray;
+}
+
+.log-btn:hover{
+    background-color: skyblue;
+    border-color: lightgray;
+}
+
 .card-btn{
     width: 150px;
     background-color: transparent;

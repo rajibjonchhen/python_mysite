@@ -16,6 +16,9 @@ def home(request):
     features = Feature.objects.all()
     return render(request, 'home.html', {'features': features})
 
+def logout(request):
+    auth.logout(request)
+    return redirect("login")
 
 def myAnotherRoute(request):
     return HttpResponse("Hello, world. You're welcome at my another route. :-")

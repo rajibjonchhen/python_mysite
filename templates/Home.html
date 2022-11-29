@@ -2,9 +2,17 @@
 <link rel="stylesheet" href="{% static 'style.css' %}"/>
 <script src="{% static 'script.js' %}">
 </script>
-<form action="login">
-    <button type="submit" class="card-btn">login</button>
-</form>
+
+    {% if user.is_authenticated %}
+    <a href="/logout" class="log-btn" >
+        logout
+    </a>
+    {% else %}
+    <a href="/login" class="log-btn">
+    login
+    </a>
+        {% endif %}
+
 <div>
     {% if user.is_authenticated %}
     <h3>Wel come, {{user.username}}</h3>
