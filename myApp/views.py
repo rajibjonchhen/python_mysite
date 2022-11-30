@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Feature
-from django.contrib.auth.models import User, auth
+from .models import Feature, Blog
+from django.contrib.auth.models import User,  auth
 from django.contrib.messages import info
 # Create your views here.
 
@@ -13,8 +13,8 @@ def index(request):
 
 
 def home(request):
-    features = Feature.objects.all()
-    return render(request, 'home.html', {'features': features})
+    blogs = Blog.objects.all()
+    return render(request, 'home.html', {'blogs': blogs})
 
 def logout(request):
     auth.logout(request)
@@ -66,3 +66,25 @@ def login(request):
             return redirect("login")
     else:
         return render(request, 'login.html')
+
+def blog(request, id):
+    blog = Blog.objects.filter(id=id)
+    return render (request, 'Blog.html', {'blog':blog})
+
+
+def newBlog(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+
+        if len(title) < 5:
+            info(request, "title must be more than 4 chars")
+            return redirect("newblog")
+        elif len(description) < 10:
+            info(request, "description must be more than 10 chars")
+            return redirect("newblog")
+        else:
+            Blog(title=title, description=description).save()
+            return redirect('home')
+    else:
+        return render(request, 'NewBlog.html')

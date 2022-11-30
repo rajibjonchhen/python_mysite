@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}"/>
+<script src="{% static 'script.js' %}">
+</script>
+<div>
+    <fieldset>
+        {% for message in messages %}
+        <span class="error-msg">{{message}}</span>
+        {% endfor %}
+        <legend>New Blog ::</legend>
+        <form method="POST" >
+            {% csrf_token %}
+            <!-- Legend tag using -->
+            <label>Title:
+            </label>
+            <br/>
+            <input type="text" name="title" />
+            <br/>
+            <label>Description:
+            </label>
+            <br/>
+            <textarea type="text" name="description" rows="10" cols="60"></textarea>
+            <br/>
+            <button type="submit" name="submit" class="my-btn">Submit</button>
+        </form>
+    </fieldset>
+</div>
